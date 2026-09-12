@@ -1,0 +1,532 @@
+/* ==========================================================================
+   App shell layout
+   ========================================================================== */
+
+.app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: var(--space-5) var(--space-5) var(--space-6);
+  gap: var(--space-4);
+}
+
+/* ---- Header / transport bar ------------------------------------------- */
+
+.app-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+}
+
+.app-title {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.app-title h1 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+
+.app-title .subtitle {
+  margin: 0;
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+/* ---- Panels ------------------------------------------------------------ */
+
+.panel {
+  background: var(--panel);
+  border: 1px solid var(--panel-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-panel);
+  padding: var(--space-5);
+}
+
+.panel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  row-gap: var(--space-2);
+  gap: var(--space-3);
+  margin-bottom: var(--space-4);
+}
+
+.panel-header h2 {
+  margin: 0;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+}
+
+.panel-header-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.app-main {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+/* ---- Buttons ------------------------------------------------------------ */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  border: 1px solid var(--panel-border-strong);
+  background: var(--bg-elevated);
+  color: var(--text-primary);
+  border-radius: var(--radius-sm);
+  padding: 8px 14px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.15s ease, border-color 0.15s ease,
+    transform 0.05s ease;
+}
+
+.btn:hover {
+  background: #1a1f2b;
+  border-color: var(--panel-border-strong);
+}
+
+.btn:active {
+  transform: translateY(1px);
+}
+
+.btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.btn-primary {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #06201c;
+  font-weight: 600;
+}
+
+.btn-primary:hover {
+  background: var(--accent-strong);
+  border-color: var(--accent-strong);
+}
+
+.btn-icon {
+  padding: 8px;
+  width: 34px;
+  height: 34px;
+}
+
+.btn-sm {
+  padding: 5px 10px;
+  font-size: 12px;
+}
+
+/* ---- Form controls ------------------------------------------------------ */
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.field label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+select,
+input[type="number"],
+input[type="text"] {
+  background: var(--bg-elevated);
+  border: 1px solid var(--panel-border-strong);
+  color: var(--text-primary);
+  border-radius: var(--radius-sm);
+  padding: 8px 10px;
+  font-size: 13px;
+  font-family: var(--font-mono);
+}
+
+input[type="range"] {
+  accent-color: var(--accent);
+  width: 100%;
+}
+
+/* ---- Empty states -------------------------------------------------------- */
+
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  padding: var(--space-6) var(--space-4);
+  color: var(--text-muted);
+  border: 1px dashed var(--panel-border-strong);
+  border-radius: var(--radius-md);
+  text-align: center;
+}
+
+.empty-state p {
+  margin: 0;
+  font-size: 13px;
+}
+
+/* ---- Segmented control (visualization mode tabs) ------------------------- */
+
+.segmented-control {
+  display: inline-flex;
+  background: var(--bg-elevated);
+  border: 1px solid var(--panel-border-strong);
+  border-radius: var(--radius-sm);
+  padding: 3px;
+  gap: 2px;
+}
+
+.segmented-control button {
+  border: none;
+  background: transparent;
+  color: var(--text-secondary);
+  padding: 6px 14px;
+  font-size: 12px;
+  font-weight: 500;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.segmented-control button.active {
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+
+.segmented-control button:hover:not(.active) {
+  color: var(--text-primary);
+}
+
+/* ---- Visualization canvas frame ------------------------------------------ */
+
+.viz-frame {
+  position: relative;
+  width: 100%;
+  height: 320px;
+  background: var(--bg-elevated);
+  border: 1px solid var(--panel-border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+
+.viz-frame canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.viz-placeholder {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-muted);
+  font-size: 13px;
+  text-align: center;
+  padding: var(--space-4);
+}
+
+/* ---- Tone list / tone row ------------------------------------------------- */
+
+.tone-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.tone-row {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  background: var(--bg-elevated);
+  border: 1px solid var(--panel-border);
+  border-left: 4px solid var(--panel-border-strong);
+  border-radius: var(--radius-md);
+  padding: var(--space-3) var(--space-4);
+  transition: opacity 0.15s ease;
+}
+
+.tone-row-disabled {
+  opacity: 0.55;
+}
+
+.tone-row input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  accent-color: var(--accent);
+  flex-shrink: 0;
+}
+
+.tone-color-input {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  border: 1px solid var(--panel-border-strong);
+  border-radius: 6px;
+  background: none;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.tone-color-input::-webkit-color-swatch-wrapper {
+  padding: 2px;
+}
+
+.tone-color-input::-webkit-color-swatch {
+  border: none;
+  border-radius: 4px;
+}
+
+.tone-name-input {
+  width: 110px;
+  flex-shrink: 0;
+}
+
+.tone-mode-toggle {
+  flex-shrink: 0;
+}
+
+.tone-note-controls,
+.tone-freq-controls {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  flex-shrink: 0;
+}
+
+.tone-note-controls select {
+  width: 68px;
+}
+
+.tone-freq-controls input[type="number"] {
+  width: 110px;
+}
+
+.tone-hint {
+  font-size: 11px;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+.tone-freq-readout {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--accent);
+  min-width: 92px;
+  text-align: right;
+  flex-shrink: 0;
+}
+
+.tone-amplitude-controls {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  flex: 1 1 120px;
+  min-width: 110px;
+}
+
+.tone-amp-readout {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--text-secondary);
+  width: 34px;
+  flex-shrink: 0;
+}
+
+.btn-icon-only {
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  flex-shrink: 0;
+  color: var(--text-secondary);
+}
+
+.btn-icon-only:hover {
+  color: var(--danger);
+  border-color: var(--danger);
+}
+
+/* ---- Overlay legend --------------------------------------------------------- */
+
+.viz-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin-bottom: var(--space-3);
+}
+
+.viz-legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: var(--text-secondary);
+  font-family: var(--font-mono);
+}
+
+.viz-legend-swatch {
+  width: 10px;
+  height: 10px;
+  border-radius: 3px;
+  flex-shrink: 0;
+}
+
+/* ---- Musical analysis -------------------------------------------------------- */
+
+.analysis-content {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.analysis-headline {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.analysis-detail {
+  margin: 0;
+  font-size: 13px;
+  font-family: var(--font-mono);
+  color: var(--text-secondary);
+}
+
+.analysis-list {
+  margin: 4px 0 0;
+  padding-left: 18px;
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+
+.analysis-list li {
+  font-family: var(--font-mono);
+}
+
+.consonance-badge {
+  margin: var(--space-2) 0 0;
+  font-size: 12px;
+}
+
+.consonance-label {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 11px;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+.consonance-consonant .consonance-label {
+  background: rgba(52, 211, 153, 0.16);
+  color: #34d399;
+}
+
+.consonance-neutral .consonance-label {
+  background: rgba(251, 191, 36, 0.16);
+  color: #fbbf24;
+}
+
+.consonance-dissonant .consonance-label {
+  background: rgba(248, 113, 113, 0.16);
+  color: #f87171;
+}
+
+.consonance-disclaimer {
+  color: var(--text-muted);
+}
+
+/* ---- Responsive ----------------------------------------------------------- */
+
+@media (max-width: 640px) {
+  .app {
+    padding: var(--space-4) var(--space-3) var(--space-5);
+  }
+
+  .panel {
+    padding: var(--space-4);
+  }
+
+  .app-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .tone-row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .tone-freq-readout {
+    text-align: left;
+  }
+
+  /* Mode/visualization tabs: full width, evenly split, smaller type —
+     without this, long labels like "Individual + Resultant" force the
+     segmented control (and the whole page) wider than the viewport. */
+  .segmented-control {
+    width: 100%;
+  }
+
+  .segmented-control button {
+    flex: 1 1 0;
+    padding: 6px 4px;
+    font-size: 11px;
+    text-align: center;
+  }
+
+  .viz-frame {
+    height: 220px;
+  }
+
+  .tone-name-input {
+    width: auto;
+  }
+
+  .tone-note-controls,
+  .tone-freq-controls,
+  .tone-amplitude-controls {
+    width: 100%;
+  }
+
+  .tone-note-controls select {
+    flex: 1 1 0;
+    width: auto;
+  }
+
+  .tone-freq-controls input[type="number"] {
+    flex: 1 1 0;
+    width: auto;
+  }
+}

@@ -1,0 +1,111 @@
+/* ==========================================================================
+   Musical Wave Lab — design tokens & global styles
+   Dark-mode-first "audio lab" aesthetic: dark background, cyan/violet
+   accents, monospace readouts for numeric/frequency data.
+   ========================================================================== */
+
+:root {
+  color-scheme: dark;
+
+  /* Surfaces */
+  --bg: #0b0d12;
+  --bg-elevated: #12151c;
+  --panel: #161a23;
+  --panel-border: #262b38;
+  --panel-border-strong: #343b4d;
+
+  /* Text */
+  --text-primary: #eef1f8;
+  --text-secondary: #9aa3b8;
+  --text-muted: #626b80;
+
+  /* Accents */
+  --accent: #4fd1c5;
+  --accent-strong: #2dd4bf;
+  --accent-soft: rgba(79, 209, 197, 0.14);
+  --accent-2: #a78bfa;
+  --danger: #f87171;
+  --warning: #fbbf24;
+
+  /* Note: the tone color palette (assigned to individual tones) lives in
+     src/music/tone.js as TONE_COLORS — it's needed as literal color strings
+     for <canvas> drawing, where CSS custom properties can't be used, so it
+     is defined once there instead of duplicated here. */
+
+  /* Radii / spacing */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+
+  /* Typography */
+  --font-ui: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Inter,
+    Helvetica, Arial, sans-serif;
+  --font-mono: "SF Mono", "Cascadia Code", "JetBrains Mono", Menlo, Consolas,
+    monospace;
+
+  --shadow-panel: 0 1px 0 rgba(255, 255, 255, 0.03) inset,
+    0 8px 24px rgba(0, 0, 0, 0.28);
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text-primary);
+  font-family: var(--font-ui);
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+button {
+  font-family: inherit;
+}
+
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+[tabindex]:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+::selection {
+  background: var(--accent-soft);
+}
+
+/* Scrollbars (WebKit) — subtle, matches dark surfaces */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--panel-border-strong);
+  border-radius: 999px;
+}

@@ -1,0 +1,5 @@
+services:
+  musical-wave-lab:
+    build: .
+    ports:
+      - "8080:80"
