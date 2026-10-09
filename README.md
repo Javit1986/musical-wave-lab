@@ -1,137 +1,140 @@
 # Musical Wave Lab
 
-**[🎧 Try it live →](https://javito1986.github.io/musical-wave-lab/)**
+**[🎧 Probala en vivo →](https://Javit1986.github.io/musical-wave-lab/)**
 
-An interactive, browser-only tool for experimenting with musical tones,
-frequencies, waveforms, and harmonies. Add one or more tones and watch —
-and hear — how they interact: their individual waveforms, how they overlap,
-the wave that results from adding them together, and their frequency
-spectrum via FFT.
+Herramienta interactiva, 100% en el navegador, para experimentar con tonos
+musicales, frecuencias, ondas y armonías. Agregá uno o varios tonos y mirá
+—y escuchá— cómo interactúan: su onda individual, cómo se superponen, la
+onda resultante de sumarlos, y su espectro de frecuencias mediante FFT.
 
-Everything runs client-side. There's no backend, no database, no accounts,
-and no data leaves your browser. Fully responsive — works on desktop,
-tablet, and mobile.
+Todo corre del lado del cliente. No hay backend, ni base de datos, ni
+cuentas, y ningún dato sale de tu navegador. Totalmente responsive —
+funciona en desktop, tablet y celular.
 
-## Features
+## Funcionalidades
 
-- **Tone management** — add, remove, enable/disable, and edit tones; each
-  has its own frequency, amplitude, and display color.
-- **Musical notes & free frequency** — pick a note (C–B) and octave under
-  12-tone equal temperament, or switch a tone to "Free Hz" to use any
-  arbitrary frequency, even one that doesn't land on a note.
-- **Tuning (A4)** — switch the reference pitch between 432 / 440 / 442 Hz
-  presets or enter a custom value; every note-based tone's frequency
-  recalculates live.
-- **Waveform visualization** — two modes: each tone's wave drawn on its
-  own row with the resultant wave below it ("Individual + Resultant"), or
-  every wave superimposed on shared axes ("Overlay") so you can see where
-  they reinforce or cancel.
-- **Resultant wave** — the point-by-point sum of every active tone,
-  recalculated whenever a tone, its frequency, or its amplitude changes.
-- **Time-window zoom** — adjust how much time the waveform view spans
-  (1 ms to 100 ms), since high frequencies need a small window to show
-  individual cycles and multi-tone interactions need a wider one.
-- **Playback (Web Audio API)** — Play/Stop every enabled tone
-  simultaneously as real sine-wave oscillators, with master and per-tone
-  volume control. What you hear always matches what's drawn.
-- **FFT spectrum** — a live frequency-domain view while playing, with
-  dashed markers at each tone's expected frequency and labels on the
-  detected peaks.
-- **Musical analysis (optional)** — for the currently active tones: the
-  nearest note for a single tone, the interval and ratio between two, or
-  a best-effort chord guess (triads and common 7th chords) for three or
-  more — plus an approximate consonance/dissonance estimate. Ambiguous
-  chords (e.g. a symmetric diminished 7th) are shown as multiple
-  "possible interpretations" rather than guessed at.
+- **Gestión de tonos** — agregar, eliminar, activar/desactivar y editar
+  tonos; cada uno con su propia frecuencia, amplitud y color.
+- **Notas musicales y frecuencia libre** — elegí una nota (C–B) y octava
+  bajo temperamento igual de 12 tonos, o pasá un tono a "Free Hz" para usar
+  cualquier frecuencia arbitraria, incluso una que no corresponda a una nota.
+- **Afinación (A4)** — cambiá la frecuencia de referencia entre los
+  presets 432 / 440 / 442 Hz o ingresá un valor personalizado; la
+  frecuencia de cada tono en modo nota se recalcula al instante.
+- **Visualización de ondas** — dos modos: cada onda en su propia fila con
+  la onda resultante debajo ("Individual + Resultant"), o todas las ondas
+  superpuestas sobre los mismos ejes ("Overlay") para ver dónde se
+  refuerzan o se cancelan.
+- **Onda resultante** — la suma punto a punto de todos los tonos activos,
+  recalculada cada vez que cambia un tono, su frecuencia o su amplitud.
+- **Zoom temporal** — ajustá cuánto tiempo abarca la visualización (1 ms a
+  100 ms), ya que las frecuencias altas necesitan una ventana chica para
+  mostrar ciclos individuales, y la interacción entre varios tonos necesita
+  una ventana más amplia.
+- **Reproducción (Web Audio API)** — Play/Stop para todos los tonos
+  activos simultáneamente, como osciladores seno reales, con volumen
+  general y por tono. Lo que escuchás siempre corresponde a lo que se
+  dibuja.
+- **Espectro FFT** — vista en vivo del dominio de frecuencia mientras se
+  reproduce, con marcadores punteados en la frecuencia esperada de cada
+  tono y etiquetas en los picos detectados.
+- **Análisis musical (opcional)** — para los tonos activos: la nota más
+  cercana para un solo tono, el intervalo y la relación (ratio) entre dos,
+  o una estimación de acorde (tríadas y acordes de 7ma comunes) para tres o
+  más — más una estimación aproximada de consonancia/disonancia. Los
+  acordes ambiguos (por ejemplo, un disminuido 7 simétrico) se muestran
+  como varias "posibles interpretaciones" en lugar de adivinar uno solo.
 
-## Tech stack
+## Stack técnico
 
 - React + Vite
-- Vanilla JavaScript (no TypeScript)
+- JavaScript puro (sin TypeScript)
 - Web Audio API (`OscillatorNode`, `GainNode`, `AnalyserNode`)
-- Canvas 2D for all waveform/spectrum drawing
-- Plain CSS (no UI framework)
+- Canvas 2D para todo el dibujo de ondas/espectro
+- CSS plano (sin frameworks de UI)
 
-## Run locally
+## Correr localmente
 
 ```bash
 npm install
 npm run dev
 ```
 
-This starts a local dev server (Vite prints the URL, typically
-`http://localhost:5173`).
+Esto levanta un servidor de desarrollo local (Vite imprime la URL,
+típicamente `http://localhost:5173`).
 
-To create a production build:
+Para generar un build de producción:
 
 ```bash
 npm run build
 ```
 
-The output goes to `dist/`. Preview it locally with:
+El resultado queda en `dist/`. Para previsualizarlo localmente:
 
 ```bash
 npm run preview
 ```
 
-## Deploying to GitHub Pages
+## Desplegar en GitHub Pages
 
-This repo includes `.github/workflows/deploy.yml`, which builds the app and
-publishes it to GitHub Pages automatically on every push to `main`. One-time
-setup after the first push:
+Este repo incluye `.github/workflows/deploy.yml`, que compila la app y la
+publica en GitHub Pages automáticamente en cada push a `main`. Configuración
+única, después del primer push:
 
-1. On GitHub, go to **Settings → Pages**.
-2. Under **Build and deployment → Source**, choose **GitHub Actions**.
+1. En GitHub, andá a **Settings → Pages**.
+2. En **Build and deployment → Source**, elegí **GitHub Actions**.
 
-After that, every push to `main` redeploys the live site — no manual build
-or upload needed. `vite.config.js` uses a relative base path (`base: "./"`),
-so the build works correctly under a project subpath
-(`https://<user>.github.io/<repo>/`) without any extra configuration.
+A partir de ahí, cada push a `main` redespliega el sitio en vivo — sin
+builds ni subidas manuales. `vite.config.js` usa una ruta base relativa
+(`base: "./"`), así que el build funciona correctamente alojado en un
+subpath de proyecto (`https://<usuario>.github.io/<repo>/`) sin
+configuración extra.
 
-Alternatively, you can run Docker locally instead of (or alongside) Pages —
-see `Dockerfile` / `docker-compose.yml` in this repo.
+Alternativamente, podés correrlo localmente con Docker en lugar de (o
+además de) Pages — ver `Dockerfile` / `docker-compose.yml` en este repo.
 
-## Architecture
+## Arquitectura
 
 ```text
 src/
-├── components/    React UI: panels, tone rows, visualizers, analysis
-├── audio/         Web Audio: AudioEngine, oscillator/analyser helpers,
-│                  and the useAudioEngine hook that wires it into React
-├── music/         Pure math: notes, frequencies, wave sampling,
-│                  intervals, chord detection — no DOM/Audio dependency
-├── utils/         Small generic helpers: canvas drawing, resize observer
-├── App.jsx        Owns shared app state, composes the panels
-└── main.jsx       Entry point
+├── components/    UI en React: paneles, filas de tono, visualizadores, análisis
+├── audio/         Web Audio: AudioEngine, helpers de oscilador/analyser,
+│                  y el hook useAudioEngine que lo conecta con React
+├── music/         Matemática pura: notas, frecuencias, muestreo de ondas,
+│                  intervalos, detección de acordes — sin dependencia de DOM/Audio
+├── utils/         Helpers genéricos chicos: dibujo en canvas, resize observer
+├── App.jsx        Dueño del estado compartido, arma los paneles
+└── main.jsx       Punto de entrada
 ```
 
-The split that matters most is between `music/` (pure functions — given
-the same numbers, always the same result, easy to reason about and test)
-and `audio/`/`components/` (the side-effectful parts: actually making
-sound, actually drawing pixels). A tone's frequency is never stored
-directly — it's always derived from its note/octave and the current A4
-(or its free-frequency value), so it can't drift out of sync when the
-tuning changes.
+La separación que más importa es entre `music/` (funciones puras — dados
+los mismos números, siempre el mismo resultado, fácil de razonar y
+testear) y `audio/`/`components/` (las partes con efectos secundarios:
+generar sonido de verdad, dibujar píxeles de verdad). La frecuencia de un
+tono nunca se guarda directamente — siempre se deriva de su nota/octava y
+el A4 actual (o de su valor de frecuencia libre), así nunca puede quedar
+desincronizada cuando cambia la afinación.
 
-## Musical concepts, briefly
+## Conceptos musicales, brevemente
 
-- **Frequency** — how many times per second a wave repeats, in Hz. It's
-  what determines pitch.
-- **Amplitude** — the wave's peak displacement, which determines loudness.
-- **A4 reference** — by convention, the frequency assigned to the note A
-  in the 4th octave; every other note's frequency is derived from it.
-  440 Hz is the modern standard, but 432 and 442 Hz are also common.
-- **12-TET (12-tone equal temperament)** — the tuning system that splits
-  each octave into 12 equal semitone steps, each a factor of
-  <sup>12</sup>√2 apart. It's why `frequencyFromNote` uses
+- **Frecuencia** — cuántas veces por segundo se repite una onda, en Hz. Es
+  lo que determina la altura (pitch) del sonido.
+- **Amplitud** — el desplazamiento máximo de la onda, que determina el
+  volumen.
+- **Referencia A4** — por convención, la frecuencia asignada a la nota A
+  en la 4ta octava; todas las demás notas se derivan de ella. 440 Hz es el
+  estándar moderno, pero 432 y 442 Hz también son comunes.
+- **12-TET (temperamento igual de 12 tonos)** — el sistema de afinación
+  que divide cada octava en 12 semitonos iguales, cada uno un factor de
+  <sup>12</sup>√2 de distancia. Por eso `frequencyFromNote` usa
   `f = a4 · 2^(n/12)`.
-- **Superposition** — when multiple waves occupy the same space, their
-  displacements simply add up at every instant. That sum is the
-  "resultant wave" this app draws and plays.
-- **FFT (Fast Fourier Transform)** — an algorithm that decomposes a
-  signal into the frequencies it's made of. The spectrum view uses Web
-  Audio's built-in `AnalyserNode` implementation rather than a hand-rolled
-  one.
-- **Intervals** — the distance between two pitches, expressed in
-  semitones and as a frequency ratio (e.g. a perfect fifth is 7
-  semitones, ratio 3:2).
+- **Superposición** — cuando varias ondas ocupan el mismo espacio, sus
+  desplazamientos simplemente se suman en cada instante. Esa suma es la
+  "onda resultante" que esta app dibuja y reproduce.
+- **FFT (Transformada Rápida de Fourier)** — un algoritmo que descompone
+  una señal en las frecuencias que la componen. La vista de espectro usa
+  la implementación nativa de `AnalyserNode` de Web Audio, en lugar de una
+  hecha a mano.
+- **Intervalos** — la distancia entre dos alturas, expresada en semitonos
+  y como relación de frecuencia (por ejemplo, una quinta justa son 7
+  semitonos, ratio 3:2).
